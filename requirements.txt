@@ -8,8 +8,8 @@ async-timeout==4.0.3
 attrs==22.2.0
 build==0.10.0
 CacheControl==0.12.11
-certifi==2022.12.7
-cffi==1.15.1
+certifi==2023.7.22
+cffi==1.16.0
 charset-normalizer==3.1.0
 cleo==2.0.1
 crashtest==0.4.1

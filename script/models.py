@@ -1,4 +1,5 @@
-async def _add(message: types.Message, state: FSMContext):
+class functions:
+    def _add(message: types.Message, state: FSMContext):
     async with SessionLocal() as session:
         user = await session.execute(User.select().where(User.tg_user_id == message.from_user.id))
         user = user.scalar_one_or_none()

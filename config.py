@@ -6,8 +6,11 @@
 
 import os
 from dotenv import load_dotenv
+## для сервера
 
-load_dotenv()
+# load_dotenv()
+# TOKEN: str = os.getenv('TOKEN')
 
-TOKEN: str = os.getenv('TOKEN')
+## для отладки
 
+TOKEN: str = os.environ['TOKEN']

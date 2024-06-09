@@ -6,11 +6,10 @@
 
 import os
 from dotenv import load_dotenv
-## для сервера
 
-# load_dotenv()
-# TOKEN: str = os.getenv('TOKEN')
+load_dotenv()
 
-## для отладки
-
-TOKEN: str = os.environ['TOKEN']
+API_TOKEN = os.getenv("API_TOKEN")
+YANDEX_CLIENT_ID = os.getenv("YANDEX_CLIENT_ID")
+YANDEX_CLIENT_SECRET = os.getenv("YANDEX_CLIENT_SECRET")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./database.db")

@@ -63,3 +63,5 @@ yarl==1.9.4
 zipp==3.15.0
 aiogram
 python-dotenv
+SQLAlchemy
+yandexcloud

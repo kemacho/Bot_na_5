@@ -9,9 +9,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_TOKEN = os.getenv("API_TOKEN")
-YANDEX_CLIENT_ID = os.getenv("YANDEX_CLIENT_ID")
-YANDEX_CLIENT_SECRET = os.getenv("YANDEX_CLIENT_SECRET")
+API_TOKEN = os.getenv("TOKEN")
+CLIENT_ID = os.getenv("CLIENT_ID")
+TOKEN_URL = os.getenv("TOKEN_URL")
 # DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./database.db")
 
 #0364c56b69b0432ab95a9ca82a57c842

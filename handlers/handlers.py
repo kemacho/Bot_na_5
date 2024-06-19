@@ -27,6 +27,18 @@ help_str = """
 💬 Для регистрации нового профиля используйте команду <b>/register</b>
 """
 
+# List of commands for the bot
+commands_for_bot = [
+    BotCommand(command="/start", description="Start the bot"),
+    BotCommand(command="/help", description="Get help information"),
+    BotCommand(command="/info", description="Get information about the bot"),
+    BotCommand(command="/fetch_data", description="Fetch data from database"),
+    BotCommand(command="/add_data", description="Add data to the database"),
+    BotCommand(command="/delete_data", description="Delete data from the database"),
+    BotCommand(command="/update_data", description="Update data in the database"),
+    BotCommand(command="/list_data", description="List all data from the database"),
+]
+
 
 async def help_command(message: types.Message):
     """справочная команда, регистрация пользователя"""
@@ -68,8 +80,61 @@ async def status_command(message: types.Message):
     await message.reply("Хотите ли вы продолжить?", reply_markup=keyboard_continue)
 
 
+async def start_command(message: types.Message):
+    await message.reply("Hello! I am your bot. How can I help you today?")
+
+async def help_command(message: types.Message):
+    await message.reply("This bot can handle the following commands:\n" +
+                        "\n".join([f"/{cmd.command} - {cmd.description}" for cmd in commands_for_bot]))
+
+async def info_command(message: types.Message):
+    await message.reply("This bot is created to demonstrate aiogram capabilities.")
+
+async def fetch_data_command(message: types.Message):
+    await message.reply("Fetching data from the database...")
+
+async def add_data_command(message: types.Message):
+    # Example: /add_data some_data
+    data = message.get_args()
+    if data:
+        await add_data(data)
+        await message.reply("Data added successfully.")
+    else:
+        await message.reply("Please provide data to add. Example: /add_data some_data")
+
+async def delete_data_command(message: types.Message):
+    # Example: /delete_data 1
+    data_id = message.get_args()
+    if data_id.isdigit():
+        await delete_data(int(data_id))
+        await message.reply("Data deleted successfully.")
+    else:
+        await message.reply("Please provide a valid data ID to delete. Example: /delete_data 1")
+
+async def update_data_command(message: types.Message):
+    # Example: /update_data 1 new_data
+    args = message.get_args().split(maxsplit=1)
+    if len(args) == 2 and args[0].isdigit():
+        await update_data(int(args[0]), args[1])
+        await message.reply("Data updated successfully.")
+    else:
+        await message.reply("Please provide a valid data ID and new data. Example: /update_data 1 new_data")
+
+async def list_data_command(message: types.Message):
+    data = await list_data()
+    await message.reply(f"Data in the database:\n{data}")
+
+
 def register_message_handler(router: Router):
     """Маршрутизация"""
+    router.message.register(start_command, commands=["start"])
+    router.message.register(help_command, commands=["help"])
+    router.message.register(info_command, commands=["info"])
+    router.message.register(fetch_data_command, commands=["fetch_data"])
+    router.message.register(add_data_command, commands=["add_data"])
+    router.message.register(delete_data_command, commands=["delete_data"])
+    router.message.register(update_data_command, commands=["update_data"])
+    router.message.register(list_data_command, commands=["list_data"])
     router.message.register(help_command, Command(commands=["start", "help"]))
     router.message.register(status_command, Command(commands=["status"]))
     router.callback_query.register(callback_continue, F.data.startswith("continue_"))

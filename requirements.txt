@@ -65,3 +65,4 @@ aiogram
 python-dotenv
 SQLAlchemy
 yandexcloud
+yadisk

@@ -20,7 +20,7 @@
 import logging  # библиотека логирования (журналирование)
 import asyncio  # библиотека для асинхронного программирования
 from aiogram import Bot, Dispatcher, types
-from config import TOKEN
+from config import API_TOKEN
 from handlers import register_message_handler
 from handlers import commands_for_bot
 from db import async_create_table

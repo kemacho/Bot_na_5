@@ -5,5 +5,5 @@ continue_button = InlineKeyboardButton(
     callback_data="continue_button_pressed",
 )
 
-keyboard_continue = InlineKeyboardMarkup(inline_keyboard=[[continue_button]])
+registerbutton = InlineKeyboardMarkup(inline_keyboard=[[continue_button]])
 

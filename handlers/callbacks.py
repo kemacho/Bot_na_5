@@ -14,7 +14,7 @@ async def start_callback(callback: CallbackQuery):
     async with async_session_maker() as session:
         session: AsyncSession
 
-        # препод
+        # преподаватель
         if role == "t":
             new_user = User(id=callback.from_user.id, name=callback.from_user.username)
             session.add(new_user)

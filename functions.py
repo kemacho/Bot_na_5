@@ -34,7 +34,7 @@ async def check_updates(bot):
                     # Уведомляем каждого слушателя
                     for user in users:
                         try:
-                            await bot.send_message(chat_id=user.id, text=f"Изменение в папке {folder.name}")
+                            await bot.send_message(chat_id=user.id, text=f"Произошло изменение в {folder.name}")
                         except TelegramBadRequest as e:
                             print(f"Не удалось отправить сообщение пользователю {user.id}: {e}")
 

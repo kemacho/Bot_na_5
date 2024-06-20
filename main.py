@@ -22,7 +22,7 @@ import logging
 from aiogram import Bot, Dispatcher
 
 from yandex import YandexFunctions
-from config import TOKEN_URL
+from config import TOKEN
 from db import async_create_table
 from functions import check_updates
 from handlers import commands_for_bot
@@ -39,7 +39,7 @@ async def main():
     # создание экземпляров классов Bot и Dispatcher
     dp = Dispatcher()
 
-    bot = Bot(token="TOKEN_URL")
+    bot = Bot(token=TOKEN)
 
     # функция для вызова хендлеров из пакета handlers
     register_message_handler(dp)

@@ -4,10 +4,8 @@ from sqlalchemy.orm import sessionmaker
 
 from .models import Base
 
-engine = create_async_engine(url="sqlite+aiosqlite:///instance/sqlite.db", echo=True)
-
-# Создаем фабрику сеансов, которая будет создавать асинхронные сеансы AsyncSession
-async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+engine: AsyncEngine = create_async_engine(url="sqlite+aiosqlite:///instance/db.db", echo=True)
+async_session_maker: AsyncSession = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
 async def async_create_table():

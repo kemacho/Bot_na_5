@@ -13,8 +13,8 @@ from .keyboards import registerbutton
 
 async def help_command(message: types.Message):
     help_str = """Вас приветствует бот <b><i>Проверка обновлений яндекс диска</i></b>
-    💬 Регистрация пользователя <b>/start</b>
-    💬 Информацию о пользователе можно вывести с помощью команды <b>/status</b>"""
+     Регистрация пользователя <b>/start</b>
+     Информацию о пользователе можно вывести с помощью команды <b>/status</b>"""
     logging.info(f"user {message.from_user.id} asked for help")
     await message.reply(text=help_str, parse_mode="HTML")
 
@@ -37,7 +37,7 @@ async def start_command(message: types.Message):
     if user:
         await message.reply(f"Вы уже зарегистрированы")
     else:
-        await message.reply("Выберите роль:", reply_markup=registerbutton)
+        await message.reply("Выбери роль:", reply_markup=registerbutton)
     logging.info(f"user {message.from_user.id} started the bot")
 
 async def register_user_command(message: types.Message):
@@ -45,12 +45,12 @@ async def register_user_command(message: types.Message):
     async with async_session_maker() as session:
         teacher = await get_user(session, teacher_id)
         if not teacher:
-            await message.answer("Преподаватель с таким ID не найден")
+            await message.answer("Преподаватель не найден")
         else:
             new_user = User(id=message.from_user.id, user_teacher_id=teacher_id, name=message.from_user.username)
             session.add(new_user)
             await session.commit()
-            await message.answer(f"Вы зарегистрировались как слушатель")
+            await message.answer(f"Вы зарегистрировались как ученик")
     logging.info(f"user {message.from_user.id} registered as a student")
 
 async def register_command(message: types.Message):
